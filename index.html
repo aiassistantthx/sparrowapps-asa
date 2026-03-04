@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Complete Guide to Apple Search Ads</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            z-index: 0;
+        }
+
+        .blob-1 {
+            width: 400px;
+            height: 400px;
+            background: #818cf8;
+            top: -100px;
+            right: -100px;
+        }
+
+        .blob-2 {
+            width: 300px;
+            height: 300px;
+            background: #818cf8;
+            bottom: -50px;
+            left: -100px;
+        }
+
+        .container {
+            max-width: 680px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #4f46e5;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 32px;
+        }
+
+        .badge svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        h1 {
+            font-size: clamp(36px, 7vw, 56px);
+            font-weight: 700;
+            color: #1e293b;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        h1 span {
+            color: #4f46e5;
+        }
+
+        .subtitle {
+            color: #64748b;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            max-width: 540px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px 32px;
+            margin-bottom: 48px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #475569;
+            font-size: 16px;
+        }
+
+        .feature svg {
+            width: 22px;
+            height: 22px;
+            color: #4f46e5;
+        }
+
+        .form-container {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 32px;
+        }
+
+        input[type="email"] {
+            padding: 18px 24px;
+            font-size: 17px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            width: 300px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input[type="email"]:focus {
+            border-color: #4f46e5;
+        }
+
+        button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #4f46e5;
+            color: white;
+            padding: 18px 32px;
+            border: none;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background: #4338ca;
+        }
+
+        .price {
+            text-decoration: line-through;
+            opacity: 0.7;
+            font-weight: 400;
+        }
+
+        .social-proof {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: #94a3b8;
+            font-size: 15px;
+        }
+
+        .social-proof svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .error-message {
+            color: #ef4444;
+            font-size: 14px;
+            margin-top: -16px;
+            margin-bottom: 16px;
+            display: none;
+        }
+
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <div class="container">
+        <div class="badge">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            </svg>
+            Free 66-Page Guide
+        </div>
+
+        <h1>The Complete Guide to<br><span>Apple Search Ads</span></h1>
+
+        <p class="subtitle">Learn step-by-step strategies to scale your app from zero to $50k/month in ad spend with proven ROI</p>
+
+        <div class="features">
+            <div class="feature">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                Keyword research tactics
+            </div>
+            <div class="feature">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                Campaign optimization
+            </div>
+            <div class="feature">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                Scaling strategies
+            </div>
+        </div>
+
+        <form id="signup-form" class="form-container">
+            <input type="email" name="email" placeholder="Enter your email" required>
+            <button type="submit">
+                <span class="price">$199</span>
+                Get Free Guide
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                </svg>
+            </button>
+        </form>
+
+        <p class="error-message" id="error-message">Please enter a valid email address</p>
+
+        <div class="social-proof">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+            </svg>
+            Join 500+ app developers who've already downloaded
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('signup-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const form = this;
+            const email = form.email.value.trim();
+            const errorEl = document.getElementById('error-message');
+
+            // Simple email validation
+            if (!email || !email.includes('@') || !email.includes('.')) {
+                errorEl.style.display = 'block';
+                return;
+            }
+
+            errorEl.style.display = 'none';
+            form.classList.add('loading');
+
+            // Store email in localStorage for now (you can replace with actual API call)
+            try {
+                localStorage.setItem('asa_signup_email', email);
+
+                // Redirect to thank you page
+                window.location.href = '/asa';
+            } catch (err) {
+                form.classList.remove('loading');
+                errorEl.textContent = 'Something went wrong. Please try again.';
+                errorEl.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
