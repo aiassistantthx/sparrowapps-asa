@@ -258,7 +258,6 @@
             const email = form.email.value.trim();
             const errorEl = document.getElementById('error-message');
 
-            // Simple email validation
             if (!email || !email.includes('@') || !email.includes('.')) {
                 errorEl.style.display = 'block';
                 return;
@@ -267,12 +266,18 @@
             errorEl.style.display = 'none';
             form.classList.add('loading');
 
-            // Store email in localStorage for now (you can replace with actual API call)
             try {
-                localStorage.setItem('asa_signup_email', email);
+                const response = await fetch('/api/subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
 
-                // Redirect to thank you page
-                window.location.href = '/asa';
+                if (!response.ok) {
+                    throw new Error('Subscription failed');
+                }
+
+                window.location.href = '/thank-you';
             } catch (err) {
                 form.classList.remove('loading');
                 errorEl.textContent = 'Something went wrong. Please try again.';
