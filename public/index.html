@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Complete Guide to Apple Search Ads</title>
     <script defer src="https://umami.sparrowapps.io/script.js" data-website-id="e554b6f9-b900-4dbe-9191-8f5fc8d19865"></script>
+    <script src="https://subscribe-forms.beehiiv.com/recommendations.js?_bhpid=0fbe3cc7-9a18-4233-92cb-36f5e9dc0d30&v=1" data-beehiiv-recommendations-widget defer></script>
     <style>
         * {
             margin: 0;
@@ -277,7 +278,13 @@
                     throw new Error('Subscription failed');
                 }
 
-                window.location.href = '/thank-you';
+                // Show Beehiiv Boosts recommendations widget
+                if (window.beehiiv && window.beehiiv.showRecommendations) {
+                    window.beehiiv.showRecommendations();
+                } else {
+                    // Fallback if widget not loaded
+                    window.location.href = '/thank-you';
+                }
             } catch (err) {
                 form.classList.remove('loading');
                 errorEl.textContent = 'Something went wrong. Please try again.';
