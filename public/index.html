@@ -278,15 +278,9 @@
                     throw new Error('Subscription failed');
                 }
 
-                // SparkLoop recommendations
+                // SparkLoop handles redirect after widget interaction
                 if (window.SparkLoop && window.SparkLoop.open) {
                     window.SparkLoop.open({ email });
-                    // Fallback if SparkLoop doesn't show
-                    setTimeout(() => {
-                        if (!document.querySelector('.sparkloop-modal, [data-sparkloop-modal]')) {
-                            window.location.href = '/thank-you';
-                        }
-                    }, 2000);
                 } else {
                     window.location.href = '/thank-you';
                 }
