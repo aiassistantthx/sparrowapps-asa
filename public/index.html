@@ -278,18 +278,9 @@
                     throw new Error('Subscription failed');
                 }
 
-                // Try SparkLoop, fallback to thank-you
-                if (window.SparkLoop && window.SparkLoop.open) {
-                    window.SparkLoop.open({ email });
-                    // Fallback if SparkLoop doesn't show (no offers, geo, etc.)
-                    setTimeout(() => {
-                        if (!document.querySelector('.sparkloop-modal, [data-sparkloop-modal]')) {
-                            window.location.href = '/thank-you';
-                        }
-                    }, 2000);
-                } else {
-                    window.location.href = '/thank-you';
-                }
+                // SparkLoop disabled until Upscribe is activated
+                // TODO: re-enable after activating Upscribe in SparkLoop dashboard
+                window.location.href = '/thank-you';
             } catch (err) {
                 form.classList.remove('loading');
                 errorEl.textContent = 'Something went wrong. Please try again.';
