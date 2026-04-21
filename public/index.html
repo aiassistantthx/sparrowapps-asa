@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Complete Guide to Apple Search Ads</title>
     <script defer src="https://umami.sparrowapps.io/script.js" data-website-id="e554b6f9-b900-4dbe-9191-8f5fc8d19865"></script>
-    <script async src="https://js.sparkloop.app/embed.js?publication_id=pub_02cfc6da3582" data-sparkloop></script>
     <style>
         * {
             margin: 0;
@@ -278,6 +277,21 @@
                     throw new Error('Subscription failed');
                 }
 
+                const loadSparkLoop = () => new Promise((resolve) => {
+                    if (window.SL && typeof window.SL.trackSubscriber === 'function') {
+                        resolve();
+                        return;
+                    }
+
+                    const script = document.createElement('script');
+                    script.src = 'https://js.sparkloop.app/embed.js?publication_id=pub_02cfc6da3582';
+                    script.async = true;
+                    script.dataset.sparkloop = '';
+                    script.onload = resolve;
+                    script.onerror = resolve;
+                    document.head.appendChild(script);
+                });
+
                 const trackSparkLoop = (attempts = 0) => new Promise((resolve) => {
                     if (window.SL && typeof window.SL.trackSubscriber === 'function') {
                         window.SL.trackSubscriber(email);
@@ -289,6 +303,7 @@
                     }
                 });
 
+                await loadSparkLoop();
                 await trackSparkLoop();
                 window.location.href = '/thank-you/';
             } catch (err) {
