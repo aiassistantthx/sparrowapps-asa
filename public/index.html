@@ -277,6 +277,8 @@
                     throw new Error('Subscription failed');
                 }
 
+                const upscribeId = 'upscribe_f0931715b9f1';
+
                 const loadSparkLoop = () => new Promise((resolve) => {
                     if (window.SL && typeof window.SL.trackSubscriber === 'function') {
                         resolve();
@@ -294,6 +296,7 @@
 
                 const trackSparkLoop = (attempts = 0) => new Promise((resolve) => {
                     if (window.SL && typeof window.SL.trackSubscriber === 'function') {
+                        window.SL.config.upscribeDisabled = true;
                         window.SL.trackSubscriber(email);
                         setTimeout(resolve, 500);
                     } else if (attempts < 20) {
@@ -305,7 +308,12 @@
 
                 await loadSparkLoop();
                 await trackSparkLoop();
-                window.location.href = '/thank-you/';
+
+                if (window.SL && window.SL.generate && typeof window.SL.generate.upscribePopup === 'function') {
+                    window.SL.generate.upscribePopup(upscribeId, email);
+                } else {
+                    window.location.href = '/thank-you/';
+                }
             } catch (err) {
                 form.classList.remove('loading');
                 errorEl.textContent = 'Something went wrong. Please try again.';
