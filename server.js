@@ -64,7 +64,20 @@ app.all('/sparkloop/:publicationId/*', async (req, res) => {
     if (upstreamPath === 'settings' && contentType.includes('application/json')) {
       const settings = JSON.parse(body);
       const protocol = req.get('x-forwarded-proto') || req.protocol;
-      settings.script_url = `${protocol}://${req.get('host')}/sparkloop`;
+      const origin = `${protocol}://${req.get('host')}`;
+
+      settings.script_url = `${origin}/sparkloop`;
+
+      if (settings.widgets && Array.isArray(settings.widgets.upscribes)) {
+        settings.widgets.upscribes = settings.widgets.upscribes.map((upscribe) => ({
+          ...upscribe,
+          after_submission: {
+            ...upscribe.after_submission,
+            default_redirect_url: `${origin}/thank-you/`,
+          },
+        }));
+      }
+
       body = JSON.stringify(settings);
     }
 
